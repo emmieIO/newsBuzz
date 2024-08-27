@@ -2,7 +2,7 @@
     <x-slot:title>NewsBuzz:: Admin Login</x-slot>
     <div class="login-card login-dark">
         <div>
-            <div class="login-main">
+            <div class="login-main" >
                 <form class="bg-white b-r-20 p-4" method="POST" action="{{route('login')}}">
                     @csrf
                     @method('POST')
@@ -11,7 +11,7 @@
                     <p>Please fll in Credentials</p>
                     <div class="form-group">
                         <label class="col-form-label">Email Address</label>
-                        <input class="form-control @error('email') is-invalid @enderror" name="email" type="email" 
+                        <input class="form-control @error('email') is-invalid @enderror" name="email" type="email"
                             placeholder="admin@expmple.com">
                             @error('email')
                             <small class="text-danger">{{$message}}</small>

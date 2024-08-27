@@ -31,7 +31,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::post("/admin/users/profile",[AdminProfileController::class, 'editPersonalInfo'])->name('admin.profile.editPersonalInfo');
     Route::post("/admin/users/reset-password",[AdminProfileController::class, 'updatePassword'])->name('admin.profile.reset-password');
     Route::post("/admin/users/update-dp",[AdminProfileController::class, 'updateProfilePicture'])->name('admin.update-profile-picture');
-
+    Route::post('/logout', [AdminProfileController::class,'logout'])->name('logout');
     // Category Management
     Route::get("/admin/categories", [CategoriesController::class, "index"])->name("admin.categories.index");
     Route::get("/admin/categories/create", [CategoriesController::class, "create"])->name("admin.categories.create");

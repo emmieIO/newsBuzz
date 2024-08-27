@@ -38,7 +38,9 @@
     <link rel="stylesheet" type="text/css" href="/dist/adminx/css/responsive.css">
 
     <style>
-        th, tr, td{
+        th,
+        tr,
+        td {
             white-space: nowrap;
         }
     </style>
@@ -50,7 +52,7 @@
         <!-- Menu Navigation starts -->
         <nav class="dark-sidebar bg-primary">
             <div class="app-logo">
-                <a class="logo d-inline-block" href="{{route("admin.dashboard")}}">
+                <a class="logo d-inline-block" href="{{ route('admin.dashboard') }}">
                     <h4>NewsBuzz Admin</h4>
                 </a>
 
@@ -64,7 +66,7 @@
                         <span>Dashboard</span>
                     </li>
                     <li class="no-sub">
-                        <a class="d-flex align-items-center gap-2" href="{{route('admin.dashboard')}}">
+                        <a class="d-flex align-items-center gap-2" href="{{ route('admin.dashboard') }}">
                             <i class="ti ti-chart-treemap"></i>
                             <span>Overview</span>
                         </a>
@@ -76,8 +78,8 @@
                             <span>Users</span>
                         </a>
                         <ul class="collapse" id="users">
-                            <li><a href="{{route("admin.users")}}">All Users</a></li>
-                            <li><a href="{{route("admin.users.add")}}">Add User</a></li>
+                            <li><a href="{{ route('admin.users') }}">All Users</a></li>
+                            <li><a href="{{ route('admin.users.add') }}">Add User</a></li>
                         </ul>
                     </li>
                     <li>
@@ -87,8 +89,8 @@
                             <span>Categories</span>
                         </a>
                         <ul class="collapse" id="categories">
-                            <li><a href="{{route("admin.categories.index")}}">All Categories</a></li>
-                            <li><a href="{{route("admin.categories.create")}}">Add Category</a></li>
+                            <li><a href="{{ route('admin.categories.index') }}">All Categories</a></li>
+                            <li><a href="{{ route('admin.categories.create') }}">Add Category</a></li>
                         </ul>
                     </li>
 
@@ -100,8 +102,8 @@
                             <span>Posts</span>
                         </a>
                         <ul class="collapse" id="posts">
-                            <li><a href="{{route("admin.posts.index")}}">All Posts</a></li>
-                            <li><a href="{{route("admin.posts.create")}}">Add Post</a></li>
+                            <li><a href="{{ route('admin.posts.index') }}">All Posts</a></li>
+                            <li><a href="{{ route('admin.posts.create') }}">Add Post</a></li>
                         </ul>
                     </li>
 
@@ -131,15 +133,6 @@
                                                     <i class="ti ti-category"></i>
                                                 </span>
 
-                                                {{-- <div class="header-searchbar">
-                                                    <form class="me-3 app-form app-icon-form " action="#">
-                                                        <div class="position-relative">
-                                                            <input type="search" class="form-control"
-                                                                placeholder="Search..." aria-label="Search">
-                                                            <i class="ti ti-search text-dark"></i>
-                                                        </div>
-                                                    </form>
-                                                </div> --}}
                                             </div>
 
                                             <div
@@ -179,7 +172,7 @@
                                                         <div class="flex-shrink-0 dropdown">
                                                             <a href="#" class="d-block head-icon pe-0"
                                                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                                                <img src="{{asset("images/profile_pictures/".auth()->user()->img)}}"
+                                                                <img src="{{ asset('images/profile_pictures/' . auth()->user()->img) }}"
                                                                     alt="mdo" class="rounded-circle h-35 w-35">
                                                             </a>
                                                             <ul
@@ -188,20 +181,23 @@
                                                                     class="dropdown-item d-flex align-items-center p-2">
                                                                     <span
                                                                         class="h-35 w-35 d-flex-center b-r-50 position-relative">
-                                                                        <img src="{{asset("images/profile_pictures/".auth()->user()->img)}}"
+                                                                        <img src="{{ asset('images/profile_pictures/' . auth()->user()->img) }}"
                                                                             alt="" class="img-fluid b-r-50">
                                                                         <span
                                                                             class="position-absolute top-0 end-0 p-1 bg-success border border-light rounded-circle animate__animated animate__fadeIn animate__infinite animate__fast"></span>
                                                                     </span>
                                                                     <div class="flex-grow-1 ps-2">
-                                                                        <h6 class="mb-0">{{auth()->user()->name}}</h6>
-                                                                        <p class="f-s-12 mb-0 text-secondary">{{auth()->user()->role}}</p>
+                                                                        <h6 class="mb-0">{{ auth()->user()->name }}
+                                                                        </h6>
+                                                                        <p class="f-s-12 mb-0 text-secondary">
+                                                                            {{ auth()->user()->role }}</p>
                                                                     </div>
                                                                 </li>
 
                                                                 <li class="app-divider-v dotted my-1"></li>
                                                                 <li>
-                                                                    <a class="dropdown-item d-flex align-items-center gap-2" href="{{route("admin.users.profile")}}">
+                                                                    <a class="dropdown-item d-flex align-items-center gap-2"
+                                                                        href="{{ route('admin.users.profile') }}">
                                                                         <i class="ti ti-user-circle pe-1 f-s-18"></i>
                                                                         <span>Profile Detaiils</span>
                                                                     </a>
@@ -210,12 +206,17 @@
                                                                 <li class="app-divider-v dotted my-1"></li>
                                                                 <li class="app-divider-v dotted my-1"></li>
                                                                 <li class="btn-light-danger b-r-5">
-                                                                    <a class="dropdown-item mb-0 text-danger d-flex align-items-center gap-2"
-                                                                        href="sign_in.html">
-                                                                        <i
-                                                                            class="ti ti-logout pe-1 f-s-18 text-danger"></i>
-                                                                        Log Out
-                                                                    </a>
+                                                                    <!-- Logout form -->
+                                                                    <form action="{{ route('logout') }}"
+                                                                        method="post">
+                                                                        @csrf
+                                                                        <button type="submit"
+                                                                            class="dropdown-item mb-0 text-danger d-flex align-items-center gap-2">
+                                                                            <i
+                                                                                class="ti ti-logout pe-1 f-s-18 text-danger"></i>
+                                                                            Log Out
+                                                                        </button>
+                                                                    </form>
                                                                 </li>
 
                                                             </ul>
@@ -237,13 +238,14 @@
 
                 <main>
                     @if (session('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('success') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                aria-label="Close"></button>
+                        </div>
+                    @endif
                     <div class="container-fluid">
-                        {{$slot}}
+                        {{ $slot }}
                     </div>
                 </main>
 
@@ -285,20 +287,20 @@
 
 
     <!-- latest jquery-->
-    <script src="{{asset("dist/adminx/js/jquery-3.6.3.min.js")}}"></script>
+    <script src="{{ asset('dist/adminx/js/jquery-3.6.3.min.js') }}"></script>
 
     <!-- Simple bar js-->
-    <script src="{{asset("dist/adminx/vendor/simplebar/simplebar.js")}}"></script>
+    <script src="{{ asset('dist/adminx/vendor/simplebar/simplebar.js') }}"></script>
     <!-- Bootstrap js-->
-    <script src="{{asset("dist/adminx/vendor/bootstrap/bootstrap.bundle.min.js")}}"></script>
+    <script src="{{ asset('dist/adminx/vendor/bootstrap/bootstrap.bundle.min.js') }}"></script>
 
     <!-- App js-->
-    <script src="{{asset("dist/adminx/js/script.js")}}"></script>
+    <script src="{{ asset('dist/adminx/js/script.js') }}"></script>
 
     <!-- sweetalert js-->
-    <script src="{{asset("dist/adminx/vendor/sweetalert/sweetalert.js")}}"> </script>
+    <script src="{{ asset('dist/adminx/vendor/sweetalert/sweetalert.js') }}"></script>
 
-@stack("scripts")
+    @stack('scripts')
 </body>
 
 </html>

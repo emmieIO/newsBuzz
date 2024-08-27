@@ -86,4 +86,11 @@ class AdminProfileController extends Controller
         return redirect()->back()->with('success', 'Profile picture updated successfully!');
     }
 
+
+    public function logout(Request $request)
+    {
+        auth()->logout();
+        return redirect()->route('login');
+    }
+
 }
